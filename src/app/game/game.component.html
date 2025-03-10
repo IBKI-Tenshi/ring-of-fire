@@ -1,0 +1,34 @@
+@for (player of this.game.players; track player; let i = $index) {
+
+<app-player class="player_position" [playerActive]="i == game.CurrentPlayer" [name]="player"
+    [style.top.px]="64 + i * 72">
+</app-player>
+}
+
+<div class="game_field">
+
+    <div class="card_stack">
+        <!-- card stack -->
+        @for (c of [0, 1, 2, 3, 4]; track c; let i = $index) {
+        <img [style.right.px]="i * 5" src="/assets/img/cards/card_cover.png" alt="">
+        }
+        <img (click)="takeCard()" class="top_card" [style.right.px]="25" src="/assets/img/cards/card_cover.png" alt="">
+
+        <!-- stack for played cards -->
+        @for (card of this.game.playedCards; track card; let i = $index) {
+        <img class="played_card" src="/assets/img/cards/{{ card }}.png" alt="">
+        }
+
+        <!-- current card (animation) -->
+        @if (pickCardAnimation) {
+        <img (click)="takeCard()" class="pick_card" [style.right.px]="25" src="/assets/img/cards/{{ currentCard }}.png"
+            alt="">
+        }
+    </div>
+</div>
+
+<app-game-info [card]="currentCard" class="pin-bottom"></app-game-info>
+
+<button mat-fab color="primary" (click)="openDialog()" class="btn_add">
+    <mat-icon>add</mat-icon>
+</button>
