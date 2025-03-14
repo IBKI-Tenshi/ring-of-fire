@@ -10,8 +10,11 @@
     width: 1000vw;
     height: 100vh;
     max-width: 100%;
-
     flex-direction: column;
+
+    @media (max-width: 960px) {
+        overflow: hidden;
+    }
 
     @include dFlex();
 

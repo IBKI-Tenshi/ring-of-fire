@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { StartScreenComponent } from './start-screen/start-screen.component';
 import { GameComponent } from './game/game.component';
+
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-root',
@@ -13,4 +15,5 @@ import { GameComponent } from './game/game.component';
 })
 export class AppComponent {
   title = 'ringOfFire';
+  firestore: Firestore = inject(Firestore); // eventuell erst da einbinden wo die info gebraucht wird
 }
